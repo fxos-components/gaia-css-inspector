@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>gaia-css-inspector</title>
+  <link rel="stylesheet" type="text/css" href="bower_components/base/base.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/gaia-theme/gaia-theme.css">
+  <link rel="stylesheet" type="text/css" href="bower_components/gaia-fonts/style.css">
+  <script src="bower_components/gaia-theme/lib/gaia-theme-selector.js"></script>
+  <script src="bower_components/gaia-component/gaia-component.js"></script>
+  <script src="gaia-css-inspector.js"></script>
+  <style>
+
+    body {
+      padding: 56px 24px 24px;
+    }
+
+    #root {
+      margin-bottom: 24px;
+    }
+
+    #outline {
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      z-index: 999999;
+      border: dotted 2px var(--highlight-color);
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    gaia-css-inspector {
+      margin: 24px 0;
+    }
+
+    h1 {
+      font-size: 2em;
+      line-height: 1.3em;
+    }
+
+    h2 {
+
+    }
+
+
+  </style>
+</head>
+<body>
+  <gaia-theme-selector></gaia-theme-selector>
+  <div id="root">
+    <h1>CSS Inspector Panel</h1>
+    <h2>Click on any element to display its style properties</h2>
+  </div>
+  <hr/>
+  <gaia-css-inspector></gaia-css-inspector>
+  <hr/>
+  <div id="outline"></div>
+<script>
+  window.onload = function() {
+    var panel = document.querySelector('gaia-css-inspector');
+    var outline = document.querySelector('#outline');
+    var root = document.documentElement;
+    var selected;
+
+    set(document.body);
+
+    root.addEventListener('click', (e) => {
+      if (e.target === panel) return;
+      set(e.target);
+    });
+
+    function set(target) {
+      panel.set(target);
+      outlineElement(target);
+    }
+
+    function outlineElement(el) {
+      var rects = el.getBoundingClientRect();
+      outline.style.width = rects.width + 'px';
+      outline.style.height = rects.height + 'px';
+      outline.style.left = rects.left + 'px';
+      outline.style.top = rects.top + 'px';
+    }
+  };
+</script>
+</body>
+</html>
