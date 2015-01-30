@@ -1,6 +1,6 @@
 {
   "name": "gaia-css-inspector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/gaia-components/gaia-css-inspector",
   "authors": [
     "Wilson Page <wilsonpage@me.com>"
@@ -18,7 +18,7 @@
     "README.md"
   ],
   "dependencies": {
-    "gaia-component": "gaia-components/gaia-component#~0.3.1"
+    "gaia-component": "gaia-components/gaia-component#~0.3.2"
   },
   "devDependencies": {
     "gaia-theme": "gaia-components/gaia-theme",
